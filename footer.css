@@ -1,0 +1,51 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.contenuto {
+    padding: 90px 50px 0px 50px;
+    min-height: 100%;
+}
+
+footer,
+.push {
+    margin-top: 30px;
+    width: 100%;
+    height: 150px;
+    vertical-align: center;
+    background: black;
+    color: white;
+}
+
+
+/* centro verticalmente gli elementi del footer */
+
+footer .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* adatto l'altezza del footer per i dispositivi mobili */
+
+@media only screen and (max-width: 768px) {
+    footer,
+    .push {
+        margin-top: 30px;
+        width: 100%;
+        height: 400px;
+        vertical-align: center;
+        background: #F8F9FA;
+    }
+    .contenuto {
+        padding: 90px 20px 0px 20px;
+        min-height: 100%;
+    }
+}
+
+.navbar {
+    background-color: black;
+}
