@@ -50,7 +50,9 @@ let mappa = new L.Map('mappa', stato_mappa);
 async function main() {
     try{
         await setDati();
-    } catch (ex) { };
+    } catch (ex) {
+        console.error('Fetch dei dati non conclusa');
+    };
     /* imposto lo zoom in base al dispositivo utilizzato */
     setZoom();
     /* imposto la mappa in modo da poter cambiare modalità */
@@ -100,10 +102,20 @@ function error() {
 }
 
 function zoomControl(map) {
+    let titolo = document.getElementById('titolo');
     map.on('zoomend', function (event) {
-        if (mappa.getZoom() <= 5) drawNations(stati);
-        else if (mappa.getZoom() <= 7) drawItaly(regioni);
-        else drawItaly(province);
+        if (mappa.getZoom() <= 5) {
+            drawNations(stati);
+            titolo.innerText = 'Nazioni';
+        }
+        else if (mappa.getZoom() <= 7) {
+            drawItaly(regioni);
+            titolo.innerText = 'Regioni italiane';
+        }
+        else {
+            drawItaly(province);
+            titolo.innerText = 'Province italiane';
+        }
     });
 }
 
