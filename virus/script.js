@@ -186,23 +186,35 @@ function drawItaly(data) {
 
                 let tabella_body = createTable(nome, luogo.note, luogo.data);
                 if (!modRegioni) {
-                    tabella_body.appendChild(getRiga('Codice provincia', luogo.codice_provincia));
-                    tabella_body.appendChild(getRiga('Casi totali', luogo.totale_casi.toLocaleString()));
+                  [
+                    ['Codice provincia', luogo.codice_provincia],
+                    ['Casi totali', luogo.totale_casi],
+                  ].forEach(coppia => {
+                    try {
+                    tabella_body.appendChild(getRiga(coppia[0], coppia[1].toLocaleString()));
+                    } catch (err) {};
+                  });
                 } else {
-                    tabella_body.appendChild(getRiga('Casi totali', luogo.totale_casi.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Totale positivi', luogo.totale_positivi.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Dimessi guariti', luogo.dimessi_guariti.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Deceduti', luogo.deceduti.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Terapia intensiva', luogo.terapia_intensiva.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Totale ospedalizzati', luogo.totale_ospedalizzati.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Isolamento domiciliare', luogo.isolamento_domiciliare.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Ricoverati con sintomi', luogo.ricoverati_con_sintomi.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Tamponi', luogo.tamponi.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Casi testati', luogo.casi_testati.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Nuovi positivi', luogo.nuovi_positivi.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Variazione totale positivi', luogo.variazione_totale_positivi.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Casi da sospetto diagnostico', luogo.casi_da_sospetto_diagnostico.toLocaleString()));
-                    tabella_body.appendChild(getRiga('Casi da screening', luogo.casi_da_screening.toLocaleString()));
+                  [
+                    ['Casi totali', luogo.totale_casi],
+                    ['Totale positivi', luogo.totale_positivi],
+                    ['Dimessi guariti', luogo.dimessi_guariti],
+                    ['Deceduti', luogo.deceduti],
+                    ['Terapia intensiva', luogo.terapia_intensiva],
+                    ['Totale ospedalizzati', luogo.totale_ospedalizzati],
+                    ['Isolamento domiciliare', luogo.isolamento_domiciliare],
+                    ['Ricoverati con sintomi', luogo.ricoverati_con_sintomi],
+                    ['Tamponi', luogo.tamponi],
+                    ['Casi testati', luogo.casi_testati],
+                    ['Nuovi positivi', luogo.nuovi_positivi],
+                    ['Variazione totale positivi', luogo.variazione_totale_positivi],
+                    ['Casi da sospetto diagnostico', luogo.casi_da_sospetto_diagnostico],
+                    ['Casi da screening', luogo.casi_da_screening]
+                  ].forEach(coppia => {
+                    try {
+                    tabella_body.appendChild(getRiga(coppia[0], coppia[1].toLocaleString()));
+                    } catch (err) {};
+                  });
                 }
             });
         }
@@ -317,13 +329,19 @@ function drawNations(data) {
                 .openOn(mappa);
             
             let tabella_body = createTable(stato.Country + ' (' + stato.CountryCode + ')', null, stato.Date)
-            tabella_body.appendChild(getRiga('Totale confermati', stato.TotalConfirmed.toLocaleString()));
-            tabella_body.appendChild(getRiga('Totale guariti', stato.TotalRecovered.toLocaleString()));
-            tabella_body.appendChild(getRiga('Totale morti', stato.TotalDeaths.toLocaleString()));
-            tabella_body.appendChild(getRiga('Nuovi confermati', stato.NewConfirmed.toLocaleString()));
-            tabella_body.appendChild(getRiga('Nuovi guariti', stato.NewRecovered.toLocaleString()));
-            tabella_body.appendChild(getRiga('Nuovi morti', stato.NewDeaths.toLocaleString()));
-
+            let dati = [
+              ['Totale confermati', stato.TotalConfirmed],
+              ['Totale guariti', stato.TotalRecovered],
+              ['Totale morti', stato.TotalDeaths],
+              ['Nuovi confermati', stato.NewConfirmed],
+              ['Nuovi guariti', stato.NewRecovered],
+              ['Nuovi morti', stato.NewDeaths]
+            ]
+            dati.forEach(coppia => {
+              try {
+              tabella_body.appendChild(getRiga(coppia[0], coppia[1].toLocaleString()));
+              } catch (err) {};
+            });
         });
     });
 }
